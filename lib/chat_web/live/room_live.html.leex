@@ -4,7 +4,7 @@
 </div>
 <div class="row">
     <div id="chat-container">
-        <div id="chat-messages">
+        <div id="chat-messages" phx-update="append">
             <%= for message <- @messages do %>
             <%= display_message(message) %>
             <% end %>
