@@ -1,0 +1,29 @@
+<div class="jumbotron">
+  <h2>Currently chatting in <%= @room_id %>! as <%=@username%></h2>
+
+</div>
+<div class="row">
+    <div id="chat-container">
+        <div id="chat-messages">
+            <%= for message <- @messages do %>
+            <%= display_message(message) %>
+            <% end %>
+
+        </div>
+    </div>
+
+    <div id="user-list">
+        <h2> users online </h2>
+        <%= for user <- @user_list do%>
+            <p><%= user%></p>
+        <%end %>
+    </div>
+
+</div>
+
+<div class="row">
+    <%= f = form_for :chat, "#", id: "chat-form", phx_submit: :submit_message,
+        phx_change: :form_update %>
+            <%= text_input f, :message, value: @message, placeholder: "Enter your message..." %>
+    </form>
+</div>
