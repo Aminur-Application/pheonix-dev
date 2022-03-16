@@ -1,5 +1,5 @@
 <div class="jumbotron">
-  <h2>Currently chatting in <%= @room_id %>! as <%=@username%></h2>
+  <h2>Currently chatting in <%= @room_id %>! </h2>
 
 </div>
 <div class="row">
@@ -14,9 +14,9 @@
 
     <div id="user-list">
         <h2> users online </h2>
-        <%= for user <- @user_list do%>
-            <p><%= user%></p>
-        <%end %>
+        <%= for user <- @user_list do %>
+           <p> <%= user[:fullname] %> <%= elipses(user[:typing]) %></p>
+        <% end %>
     </div>
 
 </div>
@@ -24,6 +24,6 @@
 <div class="row">
     <%= f = form_for :chat, "#", id: "chat-form", phx_submit: :submit_message,
         phx_change: :form_update %>
-            <%= text_input f, :message, value: @message, placeholder: "Enter your message..." %>
+        <%= text_input f, :message, value: @message, phx_blur: "stop_typing", placeholder: "Enter your message..." %>
     </form>
 </div>
